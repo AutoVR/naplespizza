@@ -30,5 +30,8 @@ https://naplespizza.restlet.io/
 
 ![Screenshot](dbmodel.jpeg)
 
+## High level class diagram
+
+![Screenshot](Rest_Class_diagram.jpeg)
 
 
