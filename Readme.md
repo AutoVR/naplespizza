@@ -22,9 +22,13 @@
 
 # Documentation
 
-## Please use the below link to access the API documentation
+## API design documentation
 
 https://naplespizza.restlet.io/
+
+## Database Model Diagram
+
+![Screenshot](dbmodel.jpeg)
 
 
 
