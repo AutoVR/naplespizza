@@ -7,6 +7,10 @@ import org.dozer.DozerBeanMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.np.entity.Order;
+import com.np.vo.OrderVO;
+
+
 @Component
 public class Mapper {
 	@Autowired
@@ -23,4 +27,17 @@ public class Mapper {
 		return this.dozerBeanMapper.map(from, toClass);
 	}
 	
+	public OrderVO mapToOrderVO(Order order) {
+		
+		OrderVO orderVO = this.dozerBeanMapper.map(order, OrderVO.class);
+		
+		return orderVO;
+		
+	}
+	
+//	//temporary soltuion Dozer is throwing error converting string[] to comma separated string
+//	public OrderItem mapToEntity(OrderItemVO orderItemVO ) {
+//		
+//	
+//	}
 }

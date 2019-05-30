@@ -1,0 +1,250 @@
+{
+	"info": {
+		"_postman_id": "8c8a823d-df14-4f9f-9ca8-9a86ff4a2082",
+		"name": "PizzaAPI",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreatePizza",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pizzaId\": 2,\n\t\"name\": \"Chicken\",\n\t\"price\":10\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/pizza",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizza"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pizza",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/pizza",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizza"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Order By OrderID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/orders/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pizza By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"url": {
+					"raw": "http://localhost:8080/pizza/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pizza",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\n\t\"orderStatus\":\"New\",\n\t\"isDelivery\": true,\n\t\"customer\" : {\n\t\t\"customerId\":1\n\t\t}\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/orders/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Order Item",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pizza\" : {\t\"pizzaId\": 1 },\n\t\"toppings\": [\"Onion\", \"Chicken\", \"Mushroom\"],\n\t\"quantity\":5\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/orders/1/orderItems",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders",
+						"1",
+						"orderItems"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Order Item",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"pizza\" : {\t\"pizzaId\": 1 },\n\t\"toppings\": [\"Onion\", \"Chicken\"],\n\t\"quantity\":2\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/orders/1/orderItems/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders",
+						"1",
+						"orderItems",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Order Item",
+			"request": {
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:8080/orders/1/orderItems/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders",
+						"1",
+						"orderItems",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Place Order",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"paymentType\" :\"Credit Card\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:8080/orders/1/payment",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"orders",
+						"1",
+						"payment"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

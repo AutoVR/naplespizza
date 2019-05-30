@@ -17,7 +17,6 @@ import com.np.NaplespizzaApplication;
 
 
 
-@ControllerAdvice
 public class exceptionHandler {
 	 /** Provides handling of exceptions for the REST service */
 	private static final Logger LOGGER = LoggerFactory.getLogger(exceptionHandler.class);

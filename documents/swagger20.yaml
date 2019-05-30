@@ -1,0 +1,286 @@
+---
+swagger: "2.0"
+info:
+  description: "No description"
+  version: "1.0.0"
+  title: "NaplesPizza"
+consumes:
+- "application/json"
+produces:
+- "application/json"
+paths:
+  /stores:
+    get:
+      summary: "find the store by zipcode/state and city"
+      description: "find the store "
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            description: "Returns the list of stores matching the zip code /city and\
+              \ state"
+            items:
+              $ref: "#/definitions/Store"
+  /stores/{storeId}:
+    get:
+      summary: "Get Store Info based on store id"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Store"
+    parameters:
+    - name: "storeId"
+      in: "path"
+      required: true
+      type: "string"
+  /stores/{storeId}/menu:
+    get:
+      summary: "Get the list of Items(pizzas) and Toppings"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/MenuItem"
+    parameters:
+    - name: "storeId"
+      in: "path"
+      required: true
+      type: "string"
+  /stores/{storeId}/toppings:
+    get:
+      summary: "Get the list of Toppings Available"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            type: "array"
+            items:
+              $ref: "#/definitions/Topping"
+    parameters:
+    - name: "storeId"
+      in: "path"
+      required: true
+      type: "string"
+  /stores/{storeid}/sizes:
+    get:
+      summary: "list of available sizes for the pizza"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Sizes"
+    parameters:
+    - name: "storeid"
+      in: "path"
+      required: true
+      type: "string"
+  /customers:
+    post:
+      summary: "add a customer"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+  /customers/{customerid}:
+    get:
+      summary: "Get Customer Info By CustomerID"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+          schema:
+            $ref: "#/definitions/Customer"
+    put:
+      summary: "Update the customer info by customerid"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    parameters:
+    - name: "customerid"
+      in: "path"
+      required: true
+      type: "string"
+  /orders:
+    get:
+      summary: "Get the order by customerid/order date"
+      parameters:
+      - name: "customerId"
+        in: "query"
+        required: false
+        type: "string"
+        description: "Order By CustomerID"
+      - name: "storeId"
+        in: "query"
+        required: false
+        type: "string"
+        description: "Order By Store Id"
+      - name: "orderDate"
+        in: "query"
+        required: false
+        type: "string"
+      responses:
+        200:
+          description: "Status 200"
+    post:
+      summary: "Create new order"
+      description: "Tp created new order composing of storeid and customerid"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+  /orders/{orderId}:
+    put:
+      summary: "Update the order status, shipping and payment information"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    parameters:
+    - name: "orderId"
+      in: "path"
+      required: true
+      type: "string"
+  /orders/{orderId}/items:
+    post:
+      summary: "Add pizza to the order based on order ID"
+      parameters: []
+      responses:
+        200:
+          description: "Status 200"
+    parameters:
+    - name: "orderId"
+      in: "path"
+      required: true
+      type: "string"
+definitions:
+  Store:
+    type: "object"
+    required:
+    - "City"
+    - "State"
+    - "StoreId"
+    - "StoreName"
+    - "ZipCode"
+    properties:
+      StoreId:
+        type: "number"
+      StoreName:
+        type: "string"
+      City:
+        type: "string"
+      State:
+        type: "string"
+      ZipCode:
+        type: "string"
+    description: "It is the store object providing the high level store details"
+  Sizes:
+    type: "array"
+    description: "The size of pizza"
+    items:
+      type: "object"
+      properties:
+        Size:
+          type: "string"
+        Price:
+          type: "number"
+    example: "[\n    {\"Size\": \"Small\", \"Price\": 8.00},\n    {\"Size\": \"Medium\"\
+      , \"Price\": 8.00},\n    {\"Size\": \"Large\", \"Price\": 8.00}\n    ]"
+  Topping:
+    type: "object"
+    required:
+    - "Category"
+    - "Price"
+    - "Topping"
+    properties:
+      Topping:
+        type: "string"
+      Category:
+        type: "string"
+      Price:
+        type: "number"
+    description: "Topping object with Category"
+  MenuItem:
+    type: "object"
+    properties:
+      MenuId:
+        type: "number"
+      MenuName:
+        type: "string"
+      BasePrice:
+        type: "number"
+    description: "Individual Pizza"
+  Customer:
+    type: "object"
+    properties:
+      CustomerId:
+        type: "string"
+        description: "Unique CustomerID field"
+      FirstName:
+        type: "string"
+        description: "FirstName of the customer"
+      LastName:
+        type: "string"
+        description: "LastName of the customer"
+      Email:
+        type: "string"
+        description: "email address"
+      Phone:
+        type: "string"
+        description: "Phone number of the customer"
+    description: "Customer object representing the customer data"
+  Order:
+    type: "object"
+    properties:
+      OrderId:
+        type: "number"
+      Customer:
+        $ref: "#/definitions/Customer"
+      OrderStatus:
+        type: "string"
+        enum:
+        - "New"
+        - "In-progress"
+        - "Complete"
+        - "Delivered"
+        - "Pending"
+        - "Cancelled"
+      DateCreated:
+        type: "string"
+        format: "date-time"
+      TotalPrice:
+        type: "number"
+      TotalTax:
+        type: "number"
+      OrderTotal:
+        type: "number"
+      OrderItem:
+        type: "array"
+        items:
+          $ref: "#/definitions/OrderItem"
+    description: "Order object"
+  OrderItem:
+    type: "object"
+    required:
+    - "MenuItem"
+    - "Size"
+    - "Toppings"
+    properties:
+      MenuItem:
+        $ref: "#/definitions/MenuItem"
+      Size:
+        type: "string"
+      Toppings:
+        type: "array"
+        items:
+          $ref: "#/definitions/Topping"
+      Price:
+        type: "number"
+    description: "OrderItem represents the menuitem with toppings and size"

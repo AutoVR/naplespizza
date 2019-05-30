@@ -3,7 +3,7 @@
           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
           xsi:schemaLocation="http://dozer.sourceforge.net
           http://dozer.sourceforge.net/schema/beanmapping.xsd">
-          	<mapping>
+	<mapping>
         <class-a>com.np.entity.Pizza</class-a>
         <class-b>com.np.vo.PizzaVO</class-b>
         <field>
@@ -15,5 +15,20 @@
             <b>name</b>
         </field>
     </mapping>
-          
+    <mapping>
+        <class-a>com.np.entity.Order</class-a>
+        <class-b>com.np.vo.OrderVO</class-b>
+        <field>
+            <a>orderId</a>
+            <b>orderId</b>
+        </field>
+    </mapping>
+    <mapping>
+  <class-a>com.np.entity.OrderItem</class-a>
+  <class-b>com.np.vo.OrderItemVO</class-b> 
+  <field custom-converter="com.np.util.DozerArrayConverter">
+    <a>topping</a>
+    <b>toppings</b>
+  </field>
+</mapping>       
 </mappings> 

@@ -1,5 +1,7 @@
 package com.np.entity;
 
+import java.math.BigDecimal;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,5 +18,5 @@ public class Pizza {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int pizzaId;
 	private String name;
-	private float price;
+	private BigDecimal price;
 }

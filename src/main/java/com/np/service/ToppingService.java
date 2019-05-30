@@ -42,4 +42,16 @@ public class ToppingService implements IToppingService {
 		return null;
 	}
 
+	@Override
+	public Boolean updateToppings(List<Topping> toppings) {
+		toppingRepository.saveAll(toppings);
+		return true;
+	}
+
+	@Override
+	public List<Topping> getToppingbyIds(List<String> ids) {
+		return toppingRepository.findAllById(ids);
+		
+	}
+
 }

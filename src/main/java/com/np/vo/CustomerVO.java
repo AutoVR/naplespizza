@@ -4,8 +4,8 @@ import lombok.Data;
 
 @Data
 public class CustomerVO {
-	private int customerId;
-	private String fistName;
+	private long customerId;
+	private String firstName;
 	private String lastName;
 	private String email;
 

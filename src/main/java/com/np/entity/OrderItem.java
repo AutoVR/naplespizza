@@ -1,5 +1,11 @@
 package com.np.entity;
 
+import java.math.BigDecimal;
+import java.sql.Date;
+import java.util.Arrays;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -18,15 +24,21 @@ public class OrderItem {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long orderItemId;
 	
-	@ManyToOne
-	@JoinColumn(name = "orderId", nullable = false)
+	@ManyToOne(cascade= CascadeType.MERGE)
+	@JoinColumn(name = "ORDER_ID", nullable = false)
 	private Order order;
 	
 	
-	private float price;
+	private BigDecimal price;
 	
-	 @ManyToOne
-	 @JoinColumn(name = "pizzaId", nullable = false)
+	private int quantity;
+	
+	private String topping;
+	
+	@ManyToOne
+	@JoinColumn(name = "pizzaId", nullable = false)
 	private Pizza pizza;
+	 
+	 
 	
 }
